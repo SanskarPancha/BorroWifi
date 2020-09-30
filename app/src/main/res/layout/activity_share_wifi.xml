@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/share_wifi_constraint_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".share_wifi">
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/bu_share"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:id="@+id/location_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_turn_on_hotspot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:text="@string/turn_on_hotspot"
+                android:textSize="@dimen/_15sdp" />
+
+            <Button
+                android:id="@+id/bu_hotspot_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?android:attr/selectableItemBackground"
+                android:drawableStart="@drawable/refresh"
+                android:drawablePadding="@dimen/_10sdp"
+                android:gravity="start|center_vertical"
+                android:onClick="refresh_ssid"
+                android:paddingStart="@dimen/_10sdp"
+                android:paddingEnd="@dimen/_10sdp"
+                android:text="@string/hotspot_name"
+                android:textColor="@color/primary_text"
+                android:textSize="@dimen/_13sdp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_name_compat"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:drawableEnd="@drawable/copy"
+                android:drawablePadding="@dimen/_10sdp"
+                android:onClick="copy_ssid_to_clipboard"
+                android:paddingStart="@dimen/_40sdp"
+                android:paddingEnd="@dimen/_20sdp"
+                android:textColor="@color/primary_text"
+                android:textSize="@dimen/_13sdp" />
+
+            <Button
+                android:id="@+id/bu_hotspot_pass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?android:attr/selectableItemBackground"
+                android:drawableStart="@drawable/refresh"
+                android:drawablePadding="@dimen/_10sdp"
+                android:gravity="start|center_vertical"
+                android:onClick="refresh_password"
+                android:paddingStart="@dimen/_10sdp"
+                android:paddingEnd="@dimen/_10sdp"
+                android:text="@string/hotspot_password"
+                android:textColor="@color/primary_text"
+                android:textSize="@dimen/_13sdp"
+
+                />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_password_compat"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:drawableEnd="@drawable/copy"
+                android:drawablePadding="@dimen/_10sdp"
+                android:onClick="copy_password_to_clipboard"
+                android:paddingStart="@dimen/_40sdp"
+                android:paddingEnd="@dimen/_20sdp"
+                android:textColor="@color/primary_text"
+                android:textSize="@dimen/_13sdp" />
+
+            <TextView
+                android:id="@+id/tv_data"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:paddingStart="@dimen/_40sdp"
+                android:paddingEnd="@dimen/_10sdp"
+                android:text="@string/data_to_be_shared_in_mb"
+                android:textColor="@color/primary_text"
+                android:textSize="@dimen/_13sdp" />
+
+            <EditText
+                android:id="@+id/et_data_shared"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_40sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:hint="@string/data_mb"
+                android:importantForAutofill="no"
+                android:inputType="number"
+                android:textSize="@dimen/_13sdp" />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switch_location"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_marginStart="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:text="@string/location_access"
+                android:textColor="@color/primary_text"
+                android:textSize="@dimen/_13sdp" />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switch_gps"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_marginStart="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:layout_marginBottom="@dimen/_20sdp"
+                android:text="@string/turn_on_location"
+                android:textColor="@color/primary_text"
+                android:textSize="@dimen/_13sdp" />
+
+            <Button
+                android:id="@+id/bu_hotspot_settings"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginStart="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:onClick="hotspot_settings"
+                android:text="@string/go_to_hotspot_settings"
+                android:textSize="@dimen/_13sdp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/bu_share"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:background="@color/accent"
+        android:onClick="start_sharing_hotspot"
+        android:text="@string/start_sharing"
+        android:textSize="@dimen/_13sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

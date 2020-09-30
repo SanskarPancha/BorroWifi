@@ -1,0 +1,55 @@
+<resources>
+    <string name="app_name">BorroWifi</string>
+    <string name="title_activity_firebase_ui_auth">FirebaseUiAuth</string>
+    <!--
+    This string is used for square devices and overridden by hello_world in
+    values-round/strings.xml for round devices.
+    -->
+    <string name="hello_world">Hello Square World!</string>
+    <string name="sign_out">sign out</string>
+    <string name="login_register">Login / Register</string>
+    <string name="app_logo">app_logo</string>
+    <string name="my_profile_menu">My Profile</string>
+    <string name="logout_menu">Logout</string>
+    <string name="borrow_wifi">Borrow Wifi</string>
+    <string name="share_wifi">Share Wifi</string>
+    <string name="turn_on_hotspot">Turn on mobile hotspot with following name and password</string>
+    <string name="hotspot_name">Hotspot Name</string>
+    <string name="go_to_hotspot_settings">Go to Hotspot Settings</string>
+    <string name="hotspot_password">Hotspot Password</string>
+    <string name="start_sharing">Start Sharing</string>
+    <string name="data_to_be_shared_in_mb">Data to be shared in MB</string>
+    <string name="ssid">SSID</string>
+    <string name="password">Password</string>
+    <string name="data_mb">Data(MB)</string>
+    <string name="map">Map</string>
+    <string name="copy_password_to_clipboard">Copy password to clipboard</string>
+    <string name="copy_ssid_to_clipboard">Copy ssid to clipboard</string>
+    <string name="ssid_refresh">ssid refresh</string>
+    <string name="password_refresh">password refresh</string>
+    <string name="location">Location</string>
+    <string name="turn_on_location">Turn on location</string>
+    <string name="location_access">Grant Location Access</string>
+    <string name="hotspot_properties">Hotspot Properties</string>
+    <string name="hotspot_sharing_mode">Hotspot Sharing Mode</string>
+    <string name="on_immedieatly">ON immedieatly</string>
+    <string name="available_on_demand">Available on demand</string>
+    <string name="fixed">Fixed</string>
+    <string name="moving">Moving</string>
+    <string name="client_status">Client status</string>
+    <string name="known">Known</string>
+    <string name="unknown">Unknown</string>
+    <string name="confirm">Confirm</string>
+    <string name="client_status_info">
+        <b>known :</b>\n\nIf client (user) who will be using the hotspot is known to you then select this option.
+        \n\n\n<b>Unknown</b> :\n\nIf client (user) who will be using the hotspot is Unknown to you then select this option.
+    </string>
+    <string name="location_status_info">
+        <b>Fixed :</b>\n\nIf your hotspot\'s location is Stationary/ Fixed then select this option.
+        \n\n<b>Moving :</b>\n\nIf your hotspot\'s location is Dynamic/ Moving / On the Go  then select this option.
+    </string>
+    <string name="ok">OK</string>
+    <string name="info">Info</string>
+
+
+</resources>

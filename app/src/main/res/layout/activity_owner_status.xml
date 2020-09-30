@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Owner_status">
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="2dp"
+        app:layout_constraintBottom_toTopOf="@+id/bu_confirm"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:id="@+id/ll_owner_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/tv_hotspot_properties"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_25sdp"
+                android:paddingStart="@dimen/_8sdp"
+                android:paddingEnd="@dimen/_8sdp"
+                android:text="@string/hotspot_properties"
+                android:textColor="@color/primary_text"
+                android:textSize="@dimen/_20sdp" />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switch_location2"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:text="@string/location_access"
+                android:textColor="@color/primary_text"
+                android:textSize="@dimen/_13sdp" />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switch_gps2"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:layout_marginBottom="@dimen/_20sdp"
+                android:text="@string/turn_on_location"
+                android:textColor="@color/primary_text"
+                android:textSize="@dimen/_13sdp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_client_relation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:drawableEnd="@drawable/info"
+                android:drawablePadding="@dimen/_10sdp"
+                android:onClick="clientStatusInfo"
+                android:paddingStart="@dimen/_10sdp"
+                android:paddingEnd="@dimen/_20sdp"
+                android:text="@string/client_status"
+                android:textColor="@color/primary_text"
+                android:textSize="@dimen/_15sdp" />
+
+            <RadioGroup
+                android:id="@+id/radio_group_client_status"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingStart="@dimen/_10sdp"
+                android:paddingTop="@dimen/_10sdp"
+                android:paddingEnd="@dimen/_10sdp">
+
+                <RadioButton
+                    android:id="@+id/radio_known"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="makeLocationInvisible"
+                    android:text="@string/known"
+                    android:textSize="@dimen/_13sdp" />
+
+                <RadioButton
+                    android:id="@+id/radio_unknown"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="makeLocationVisible"
+                    android:text="@string/unknown"
+                    android:textSize="@dimen/_13sdp" />
+            </RadioGroup>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_location"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:drawableEnd="@drawable/info"
+                android:drawablePadding="@dimen/_10sdp"
+                android:onClick="locationInfo"
+                android:paddingStart="@dimen/_10sdp"
+                android:paddingEnd="@dimen/_20sdp"
+                android:text="@string/location"
+                android:textColor="@color/primary_text"
+                android:textSize="@dimen/_15sdp"
+                android:visibility="invisible" />
+
+            <RadioGroup
+                android:id="@+id/radio_group_location"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingStart="@dimen/_10sdp"
+                android:paddingTop="@dimen/_10sdp"
+                android:paddingEnd="@dimen/_10sdp"
+                android:visibility="invisible">
+
+                <RadioButton
+                    android:id="@+id/radio_fixed"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="onRadioButtonClicked"
+                    android:text="@string/fixed"
+                    android:textSize="@dimen/_13sdp" />
+
+                <RadioButton
+                    android:id="@+id/radio_moving"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="onRadioButtonClicked"
+                    android:text="@string/moving"
+                    android:textSize="@dimen/_13sdp" />
+            </RadioGroup>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/bu_confirm"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_8sdp"
+        android:layout_marginEnd="@dimen/_8sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:background="@color/primary"
+        android:onClick="setStatus"
+        android:paddingStart="@dimen/_8sdp"
+        android:paddingEnd="@dimen/_8sdp"
+        android:text="@string/confirm"
+        android:textColor="@color/icons"
+        android:textSize="@dimen/_15sdp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
