@@ -18,10 +18,10 @@
     <string name="go_to_hotspot_settings">Go to Hotspot Settings</string>
     <string name="hotspot_password">Hotspot Password</string>
     <string name="start_sharing">Start Sharing</string>
-    <string name="data_to_be_shared_in_mb">Data to be shared in MB</string>
+    <string name="data_to_be_shared_in_mb">Time duration</string>
     <string name="ssid">SSID</string>
     <string name="password">Password</string>
-    <string name="data_mb">Data(MB)</string>
+    <string name="data_mb">Time(min)</string>
     <string name="map">Map</string>
     <string name="copy_password_to_clipboard">Copy password to clipboard</string>
     <string name="copy_ssid_to_clipboard">Copy ssid to clipboard</string>
@@ -50,6 +50,10 @@
     </string>
     <string name="ok">OK</string>
     <string name="info">Info</string>
+    <string name="friend">Friend</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="connect">Connect</string>
+    <string name="home">Home</string>
 
 
 </resources>

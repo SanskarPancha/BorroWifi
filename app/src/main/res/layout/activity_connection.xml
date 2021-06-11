@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Connection">
+
+    <ScrollView
+        android:id="@+id/sv_connection"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <Button
+                android:id="@+id/bu_hotspot_name2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_50sdp"
+                android:background="?android:attr/selectableItemBackground"
+                android:drawableStart="@drawable/ic_baseline_wifi_tethering_24"
+                android:drawablePadding="@dimen/_10sdp"
+                android:gravity="start|center_vertical"
+                android:paddingStart="@dimen/_10sdp"
+                android:paddingEnd="@dimen/_10sdp"
+                android:rotationX="4"
+                android:text="@string/hotspot_name"
+                android:textColor="@color/primary_text"
+                android:textSize="@dimen/_13sdp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_name_compat4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:drawableEnd="@drawable/copy"
+                android:drawablePadding="@dimen/_10sdp"
+                android:onClick="copy_ssid_to_clipboard"
+                android:paddingStart="@dimen/_40sdp"
+                android:paddingEnd="@dimen/_20sdp"
+                android:textColor="@color/primary_text"
+                android:textSize="@dimen/_13sdp" />
+
+            <Button
+                android:id="@+id/bu_hotspot_pass2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?android:attr/selectableItemBackground"
+                android:drawableStart="@drawable/ic_baseline_wifi_tethering_24"
+                android:drawablePadding="@dimen/_10sdp"
+                android:gravity="start|center_vertical"
+                android:paddingStart="@dimen/_10sdp"
+                android:paddingEnd="@dimen/_10sdp"
+                android:text="@string/hotspot_password"
+                android:textColor="@color/primary_text"
+                android:textSize="@dimen/_13sdp"
+
+                />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_password_compat2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:drawableEnd="@drawable/copy"
+                android:drawablePadding="@dimen/_10sdp"
+                android:onClick="copy_password_to_clipboard"
+                android:paddingStart="@dimen/_40sdp"
+                android:paddingEnd="@dimen/_20sdp"
+                android:textColor="@color/primary_text"
+                android:textSize="@dimen/_13sdp" />
+
+            <Button
+                android:id="@+id/bu_hotspot_settings2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:onClick="hotspot_settings"
+                android:text="@string/connect"
+                android:textSize="@dimen/_13sdp" />
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

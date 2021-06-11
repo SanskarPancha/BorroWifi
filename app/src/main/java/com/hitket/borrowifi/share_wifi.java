@@ -33,6 +33,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.common.collect.Maps;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -80,28 +81,27 @@ public class share_wifi extends AppCompatActivity implements CompoundButton.OnCh
 
         if(F_user.getMetadata().getCreationTimestamp()==F_user.getMetadata().getLastSignInTimestamp()) {
             random_generator();
+            set_new_user();
         }
         else{
-            db.collection("users").document(user_uid).get()
-                    .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                        @Override
-                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                            if (task.isSuccessful()) {
-                                DocumentSnapshot document = task.getResult();
-                                if(document.exists()){
-                                    hotspot_random_name=  document.get("ssid").toString();
-                                    hotspot_random_password= document.get("password").toString();
-                                    ssid.setText(hotspot_random_name);
-                                    password.setText(hotspot_random_password);
-                                }
-                                else{
-
-                                }
-                            } else {
-                                random_generator();
-                                set_new_user();
-                                Log.w(TAG, "Error getting documents.", task.getException());
+            db.collection("users").document(user_uid).collection("hotspot_status")
+                    .document("hotspot").get()
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+                            if(document.exists()){
+                                hotspot_random_name=  document.get("ssid").toString();
+                                hotspot_random_password= document.get("password").toString();
+                                ssid.setText(hotspot_random_name);
+                                password.setText(hotspot_random_password);
                             }
+                            else{
+
+                            }
+                        } else {
+                            random_generator();
+                            set_new_user();
+                            Log.w(TAG, "Error getting documents for ssid and password", task.getException());
                         }
                     });
 
@@ -114,7 +114,8 @@ public class share_wifi extends AppCompatActivity implements CompoundButton.OnCh
         Map<String, Object> user = new HashMap<>();
         user.put("ssid",hotspot_random_name);
         user.put("password", hotspot_random_password);
-        db.collection("users").document(user_uid).collection("hotspot status").document("hotspot")
+        db.collection("users").document(user_uid).collection("hotspot_status")
+                .document("hotspot")
                 .set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
@@ -123,7 +124,7 @@ public class share_wifi extends AppCompatActivity implements CompoundButton.OnCh
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Log.w(TAG,"Error in writing to cloud" + e);
+                Log.w(TAG,"Error in writing to cloud (new user)" + e);
             }
         });
 
@@ -173,21 +174,27 @@ public class share_wifi extends AppCompatActivity implements CompoundButton.OnCh
 
 
             Map<String, Object> data_temp = new HashMap<>();
-            data_temp.put("Data shared", data_int);
+            data_temp.put("status","");
+            data_temp.put("data limit",data_int);
+            data_temp.put("data shared",0);
+            data_temp.put("ssid",hotspot_random_name);
+            data_temp.put("password", hotspot_random_password);
 
-            db.collection("users").document(user_uid).set(data_temp, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
+
+            db.collection("users").document(user_uid).collection("hotspot_status").document("hotspot")
+                    .set(data_temp).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {
-                    Log.d(TAG, "User information succesfully sent to Firestore");
+                    Log.d(TAG, "User information succesfully sent to Firestore (hotspot ON)");
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-                    Log.w(TAG, "Error in writing to cloud" + e);
+                    Log.w(TAG, "Error in writing to cloud( Hotspot ON ) " + e);
                 }
             });
 
-            startActivity(new Intent(share_wifi.this,hotspot_sharing.class));
+            startActivity(new Intent(share_wifi.this, hotspot_sharing.class));
 
         }
     }
@@ -216,7 +223,7 @@ public class share_wifi extends AppCompatActivity implements CompoundButton.OnCh
         password.setText(pass);
         Map<String, Object> map = new HashMap<>();
         map.put("password", pass);
-        db.collection("users").document(user_uid).set(map,SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
+        db.collection("users").document(user_uid).collection("hotspot_status").document("hotspot").set(map,SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
                 Log.d(TAG,"Password refresh succesfull");
@@ -237,15 +244,15 @@ public class share_wifi extends AppCompatActivity implements CompoundButton.OnCh
         ssid.setText(name);
         Map<String, Object> map = new HashMap<>();
         map.put("ssid", name);
-        db.collection("users").document(user_uid).set(map,SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
+        db.collection("users").document(user_uid).collection("hotspot_status").document("hotspot").set(map,SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
-                Log.d(TAG,"SSID refresh succesfull");
+                Log.d(TAG,"hotspot name refresh successful");
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Log.w(TAG,"SSID refresh failed" + e );
+                Log.w(TAG,"hotspot name refresh failed" + e );
             }
         });
 
@@ -391,4 +398,6 @@ public class share_wifi extends AppCompatActivity implements CompoundButton.OnCh
                 break;
         }
     }
+
+
 }

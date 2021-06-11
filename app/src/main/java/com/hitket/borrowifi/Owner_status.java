@@ -38,6 +38,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
 
@@ -84,11 +85,11 @@ public class Owner_status extends AppCompatActivity implements CompoundButton.On
 
             case R.id.radio_fixed:
                 if (checked)
-                    makeToast("fixed");
+
                 break;
             case R.id.radio_moving:
                 if (checked)
-                    makeToast("moving");
+
                 break;
             case R.id.radio_unknown:
                 if (checked)
@@ -338,23 +339,58 @@ public class Owner_status extends AppCompatActivity implements CompoundButton.On
                     @Override
                     public void onSuccess(Location location) {
                         // Got last known location. In some rare situations this can be null.
+                        DocumentReference docRef = db.collection("users").document(user_uid)
+                                .collection("hotspot_status").document("hotspot");
+                        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    DocumentSnapshot document = task.getResult();
+                                    if (document.exists()) {
+                                        map_id = document.getString("map id");
+                                    } else {
+                                        Log.d(TAG, "No such document");
+                                    }
+                                } else {
+                                    Log.d(TAG, "get failed with ", task.getException());
+                                }
+                            }
+                        });
                         if (location != null) {
+
                             Map<String, Object> data_temp = new HashMap<>();
                             data_temp.put("lat", location.getLatitude());
                             data_temp.put("log",location.getLongitude());
 
-                            db.collection("map_aod")
+                            db.collection("map").document("status").collection("aod")
                                     .add(data_temp).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                                 @Override
                                 public void onSuccess(DocumentReference documentReference) {
                                     Log.d(TAG, "You will be notified when a client comes nearby");
                                     map_id = documentReference.getId();
+                                    makeToast(map_id);
                                     makeToast("You will be notified when a client comes nearby ");
                                 }
-                            }) .addOnFailureListener(new OnFailureListener() {
+                            }).addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
-                                    Log.w(TAG, "Error in getting location" + e);
+                                    makeToast("Error");
+                                    Log.w(TAG, "Error in getting location " + e);
+                                }
+                            });
+                            Map<String, Object> temp = new HashMap<>();
+                            temp.put("map id", map_id);
+                            db.collection("users").document(user_uid)
+                                    .collection("hotspot_status").document("hotspot")
+                                    .set(temp,SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    Log.d(TAG,"map information succesfully sent to Firestore");
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Log.w(TAG,"Error in writing to cloud (map ID)" + e);
                                 }
                             });
                         }

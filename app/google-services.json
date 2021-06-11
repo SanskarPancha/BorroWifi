@@ -1,42 +1,41 @@
 {
   "project_info": {
-    "project_number": "868141318384",
-    "firebase_url": "https://hitket-10e34.firebaseio.com",
-    "project_id": "hitket-10e34",
-    "storage_bucket": "hitket-10e34.appspot.com"
+    "project_number": "709058720134",
+    "project_id": "borrowifi-a04a8",
+    "storage_bucket": "borrowifi-a04a8.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:868141318384:android:32d42355811531ce21c235",
+        "mobilesdk_app_id": "1:709058720134:android:4702d22a9b55619410bc07",
         "android_client_info": {
           "package_name": "com.hitket.borrowifi"
         }
       },
       "oauth_client": [
         {
-          "client_id": "868141318384-fecqmtkg168udnv66btlc5rfc44gdftp.apps.googleusercontent.com",
+          "client_id": "709058720134-de9h921380p6oa0f7aakrq9gcge54r3e.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.hitket.borrowifi",
-            "certificate_hash": "b190c9197503f9576d7505de9f8eea941de22772"
+            "certificate_hash": "bceacae01cc22742e267fa2f3e8da5629d81a7f4"
           }
         },
         {
-          "client_id": "868141318384-v79hbbaife00832400h7h2505fhrk67h.apps.googleusercontent.com",
+          "client_id": "709058720134-65tj7k46fqo7sam6m2uj52bnqda8o3vn.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBa4KOR-UGtEFl8nJLOv0JI5I_Sllpr4zE"
+          "current_key": "AIzaSyBplUmVXoBSYutqIVmKfjwc-VllEqbfwsU"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "868141318384-v79hbbaife00832400h7h2505fhrk67h.apps.googleusercontent.com",
+              "client_id": "709058720134-65tj7k46fqo7sam6m2uj52bnqda8o3vn.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
